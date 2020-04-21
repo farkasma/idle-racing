@@ -3,17 +3,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="styles.css">
     <title>Idle Racing</title>
 </head>
 <body>
     <script src="script.js"></script>
-    <p id="money">You have 1.00 lap(s).</p>
-    <p id="pos">You are at 0 meter(s) out of 100.</p>
-    <p id="speed">Your current speed is 0 m/s.</p>
-    <p id="engine">Engine: 1.00 laps</p>
-    <button id="engineButton" onclick=engine.buy() title="Every bought upgrade increases the speed of your car. Current power is 0 m/s per upgrade.">LVL 0</button>
-    <p id="mechanic">Mechanic: 5.00 laps</p>
-    <button id="mechanicButton" onclick=mechanic.buy()>0x</button>
-    <p>Hint: Mouse over buttons to see an explanation.</p>
+    <div class="main-container">
+        <div id="phase1">
+            <div class="stats-container">
+                <p id="money">You have 1.00 lap(s).</p>
+                <p id="pos">You are at 0.00 meter(s) out of 100.</p>
+                <p id="speed">Your current speed is 0 m/s.</p>
+            </div>
+            <div class="upgrades-container">
+                <div class="upgrade" id="engineUpgrade" onclick=engine.buy() title="Every bought upgrade increases the speed of your car by the current upgrade power.">
+                    <p class="upgrade-title">ENGINE</p>
+                    <p id="engineCost">Cost: 1.00</p>
+                    <p id="engineBought">Bought: 0</p>
+                    <p id="enginePower">Current power is 1.</p>
+                </div>
+                <div class="upgrade" onclick=mechanic.buy() title="Hire a mechanic to double the power of future engine upgrades.">
+                    <p class="upgrade-title">MECHANICS</p>
+                    <p id="mechanicCost">Cost: 10.00</p>
+                    <p id="mechanicBought">Bought: 0</p>
+                </div>
+            </div>
+            <p>Hint: Mouse over buttons to see an explanation.</p>    
+        </div>
+        <div id="ascend1" class="inactive" onclick=reset()>
+            <div id="prereset">
+                <p>Oops, looks like you broke the track and with it this reality.<br>Please reset the world to fix it and earn your first Glitch Trophy.</p>
+                <div class="upgrade">Reset game!</div>
+            </div>
+            <div id="postreset" class="inactive">
+                <div id="prestigeStats">You have 1 Glitch Trophy(s).</div>
+                <div class="prestigeUpgrade">
+                    <p class="upgrade-title">PREMIUM OIL</p>
+                    <p id=""></p>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
