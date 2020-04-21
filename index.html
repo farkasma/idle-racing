@@ -30,16 +30,20 @@
             </div>
             <p>Hint: Mouse over buttons to see an explanation.</p>    
         </div>
-        <div id="ascend1" class="inactive" onclick=reset()>
+        <div id="ascend1" class="inactive">
             <div id="prereset">
-                <p>Oops, looks like you broke the track and with it this reality.<br>Please reset the world to fix it and earn your first Glitch Trophy.</p>
-                <div class="upgrade">Reset game!</div>
+                <p id="preresetText">Oops, looks like you broke the track and with it this reality.<br>Please reset the world to fix it and earn your first Glitch Trophy.</p>
+                <div id="resetButton" class="upgrade" onclick=reset()>Reset game!</div>
             </div>
             <div id="postreset" class="inactive">
                 <div id="prestigeStats">You have 1 Glitch Trophy(s).</div>
-                <div class="prestigeUpgrade">
+                <div id="oilUpgrade" class="prestigeUpgrade" onclick=oilUpgrade() title="Once bought, it gives a static 1.5x multiplier to your speed.">
                     <p class="upgrade-title">PREMIUM OIL</p>
-                    <p id=""></p>
+                    <p>Cost: 1 GT</p>
+                </div>
+                <div id="AIUpgrade" class="prestigeUpgrade" onclick=AIUpgrade() title="Once bought, it gives you a constantly raising speed multiplier.">
+                    <p class="upgrade-title">AI AIDED RESEARCH</p>
+                    <p>Cost: 2 GT</p>
                 </div>
             </div>
         </div>

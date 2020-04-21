@@ -23,7 +23,7 @@ body {
     margin: 10px;
 }
 
-.prestigeUphógrade {
+.prestigeUpgrade {
     border: 2px solid red;
     text-align: center;
     padding: 15px;
@@ -46,6 +46,10 @@ body {
 
 .inactive {
     display: none;
+}
+
+.upgrade.locked {
+    background-color: grey;
 }
 
 p {
