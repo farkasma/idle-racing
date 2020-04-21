@@ -1,0 +1,71 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: black;
+    color: white;
+    padding: 5px;
+}
+
+.main-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.upgrade {
+    border: 2px solid white;
+    text-align: center;
+    padding: 15px;
+    border-radius: 10px;
+    user-select: none;
+    margin: 10px;
+}
+
+.prestigeUphógrade {
+    border: 2px solid red;
+    text-align: center;
+    padding: 15px;
+    border-radius: 10px;
+    user-select: none;
+    margin: 10px;
+
+}
+
+.upgrades-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 10px 0px;
+}
+
+.upgrade-title {
+    font-size: 1.3em;
+}
+
+.inactive {
+    display: none;
+}
+
+p {
+    margin: 0px;
+}
+
+#money {
+    font-size: 2em;
+}
+
+#ascend1 {
+    border-style: none none none solid;
+    border-color: white;
+    border-width: 3px;
+    width: 40%;
+    padding: 0px 15px;
+}
+
+#prestigeStats {
+    color: red;
+    font-size: 2em;
+    margin: 0px 0px 10px 0px;
+}
