@@ -63,6 +63,10 @@ function updater() {
     document.getElementById("pos").textContent = "You are at " + car.dist.toFixed(2) + " meter(s) out of " + track + ".";
     document.getElementById("speed").textContent = "Your current speed is " + car.speed * car.mult + " m/s.";
     document.getElementById("resetButton").textContent = "Reset the game for " + Math.round(Math.pow(track/100, 2)) + " Glitch Trophies."
+    GUIButtons(engine.cost(), "engineUpgrade", laps);
+    GUIButtons(mechanic.cost(), "mechanicUpgrade", laps);
+    GUIButtons(1, "oilUpgrade", glitchTrophies);
+    GUIButtons(2, "AIUpgrade", glitchTrophies);
     if (car.dist > resetThreshold) {
         document.getElementById("ascend1").classList.remove("inactive");
         document.getElementById("resetButton").classList.remove("locked");
@@ -87,7 +91,7 @@ function reset() {
         document.getElementById("mechanicCost").textContent = "Cost: " + mechanic.cost() + " laps";
         document.getElementById("mechanicBought").textContent = "Bought: " + mechanic.bought;
         document.getElementById("postreset").classList.remove("inactive");
-        document.getElementById("preresetText").classList.add("inactive");    
+        document.getElementById("preresetText").classList.add("inactive");
     }
 }
 
@@ -100,11 +104,18 @@ function oilUpgrade() {
 }
 
 function AIUpgrade() {
-    debugger;
     if (glitchTrophies >= 2) {
         glitchTrophies -= 2;
         car.multGrowth = 0.1;
         document.getElementById("AIUpgrade").classList.add("inactive");
+    }
+}
+
+function GUIButtons(cost, element, currency) {
+    if (cost > currency) {
+        document.getElementById(element).classList.add("locked");
+    } else {
+        document.getElementById(element).classList.remove("locked");
     }
 }
 setInterval(updater, 50);

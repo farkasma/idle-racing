@@ -30,7 +30,6 @@ body {
     border-radius: 10px;
     user-select: none;
     margin: 10px;
-
 }
 
 .upgrades-container {
@@ -50,6 +49,10 @@ body {
 
 .upgrade.locked {
     background-color: grey;
+}
+
+.prestigeUpgrade.locked {
+    background-color: tomato;
 }
 
 p {
