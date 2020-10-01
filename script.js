@@ -1,3 +1,7 @@
+/*turn the button into an object, like, all of them
+also probably put them in a list, so I don't have to call GUIButtons one by one
+also find a way to calculate mult and display accurate engine upgrade power at the same time*/
+
 var laps = 1.0;
 var track = 100;
 var resetThreshold = track + 100;
