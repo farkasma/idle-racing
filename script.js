@@ -65,7 +65,7 @@ function updater() {
     };
     document.getElementById("money").textContent = "You have " + laps.toFixed(2) + " lap(s).";
     document.getElementById("pos").textContent = "You are at " + car.dist.toFixed(2) + " meter(s) out of " + track + ".";
-    document.getElementById("speed").textContent = "Your current speed is " + car.speed * car.mult + " m/s.";
+    document.getElementById("speed").textContent = "Your current speed is " + (car.speed * car.mult).toFixed(2) + " m/s.";
     document.getElementById("resetButton").textContent = "Reset the game for " + Math.round(Math.pow(track/100, 2)) + " Glitch Trophies."
     GUIButtons(engine.cost(), "engineUpgrade", laps);
     GUIButtons(mechanic.cost(), "mechanicUpgrade", laps);
