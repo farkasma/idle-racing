@@ -1,8 +1,4 @@
-/*turn the button into an object, like, all of them
-also probably put them in a list, so I don't have to call GUIButtons one by one
-also find a way to calculate mult and display accurate engine upgrade power at the same time*/
-
-var laps = 1.0;
+var laps = 0;
 var track = 100;
 var resetThreshold = track + 100;
 var n = 0;
@@ -42,7 +38,7 @@ var mechanic = {
         } else {
             laps -= this.cost();
             this.bought += 1;
-            document.getElementById("mechanicCost").textContent = "Cost: " + this.cost() + " laps";
+            document.getElementById("mechanicCost").textContent = "Cost: " + this.cost().toFixed(2) + " laps";
             document.getElementById("mechanicBought").textContent = "Bought: " + this.bought;
             document.getElementById("enginePower").textContent = "Current power is " + engine.power() * car.mult + ".";
         }
@@ -50,11 +46,36 @@ var mechanic = {
     element: "mechanicUpgrade"
 }
 
+var oil = {
+    cost: 1,
+    buy: function() {
+        if (glitchTrophies >= this.cost) {
+            glitchTrophies -= this.cost;
+            car.mult *= 1.5;
+            document.getElementById("enginePower").textContent = "Current power is " + engine.power() * car.mult + ".";
+            document.getElementById(this.element).classList.add("inactive");    
+        }    
+    },
+    element: "oilUpgrade"
+}
+
+var AI = {
+    cost: 2,
+    buy: function() {
+        if (glitchTrophies >= this.cost) {
+            glitchTrophies -= this.cost;
+            car.multGrowth = 0.1;
+            document.getElementById(this.element).classList.add("inactive");
+        }    
+    },
+    element: "AIUpgrade"
+}
+
 var car = {
     speed: 1,
     dist: 0,
     mult: 1,
-    multGrowth: 0,
+    multGrowth: 0
 }
 
 function updater() {
@@ -69,10 +90,10 @@ function updater() {
     document.getElementById("pos").textContent = "You are at " + car.dist.toFixed(2) + " meter(s) out of " + track + ".";
     document.getElementById("speed").textContent = "Your current speed is " + (car.speed * car.mult).toFixed(2) + " m/s.";
     document.getElementById("resetButton").textContent = "Reset the game for " + Math.round(Math.pow(track/100, 2)) + " Glitch Trophies."
-    GUIButtons(engine.cost(), "engineUpgrade", laps);
-    GUIButtons(mechanic.cost(), "mechanicUpgrade", laps);
-    GUIButtons(1, "oilUpgrade", glitchTrophies);
-    GUIButtons(2, "AIUpgrade", glitchTrophies);
+    GUIButtons(engine, laps);
+    GUIButtons(mechanic, laps);
+    GUIButtons(oil, glitchTrophies);
+    GUIButtons(AI, glitchTrophies);
     if (car.dist > resetThreshold) {
         document.getElementById("ascend1").classList.remove("inactive");
         document.getElementById("resetButton").classList.remove("locked");
@@ -88,7 +109,7 @@ function reset() {
         glitchTrophies += Math.pow(track/100, 2);
         car.speed = 1;
         car.dist = 0;
-        laps = 1;
+        laps = 0;
         engine.bought = 0;
         mechanic.bought = 0;
         document.getElementById("engineCost").textContent = "Cost: " + engine.cost().toFixed(2) + " laps";
@@ -101,28 +122,11 @@ function reset() {
     }
 }
 
-function oilUpgrade() {
-    if (glitchTrophies >= 1) {
-        glitchTrophies -= 1;
-        car.mult *= 1.5;
-        document.getElementById("enginePower").textContent = "Current power is " + engine.power() * car.mult + ".";
-        document.getElementById("oilUpgrade").classList.add("inactive");    
-    }
-}
-
-function AIUpgrade() {
-    if (glitchTrophies >= 2) {
-        glitchTrophies -= 2;
-        car.multGrowth = 0.1;
-        document.getElementById("AIUpgrade").classList.add("inactive");
-    }
-}
-
-function GUIButtons(cost, element, currency) {
-    if (cost > currency) {
-        document.getElementById(element).classList.add("locked");
+function GUIButtons(object, money) {
+    if (object.cost > money) {
+        document.getElementById(object.element).classList.add("locked");
     } else {
-        document.getElementById(element).classList.remove("locked");
+        document.getElementById(object.element).classList.remove("locked");
     }
 }
 setInterval(updater, 50);
