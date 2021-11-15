@@ -27,7 +27,8 @@ var engine = {
             document.getElementById("engineCost").textContent = "Cost: " + this.cost().toFixed(2) + " laps";
             document.getElementById("engineBought").textContent = "Bought: " + this.bought;
         }
-    }
+    },
+    element: "engineUpgrade"
 };
 
 var mechanic = {
@@ -43,13 +44,14 @@ var mechanic = {
             this.bought += 1;
             document.getElementById("mechanicCost").textContent = "Cost: " + this.cost() + " laps";
             document.getElementById("mechanicBought").textContent = "Bought: " + this.bought;
-            document.getElementById("enginePower").textContent = "Current power is " + engine.power() + ".";
+            document.getElementById("enginePower").textContent = "Current power is " + engine.power() * car.mult + ".";
         }
-    }
+    },
+    element: "mechanicUpgrade"
 }
 
 var car = {
-    speed: 0,
+    speed: 1,
     dist: 0,
     mult: 1,
     multGrowth: 0,
@@ -84,7 +86,7 @@ function updater() {
 function reset() {
     if (Math.round(Math.pow(track/100, 2)) > 0 && car.dist > resetThreshold) {
         glitchTrophies += Math.pow(track/100, 2);
-        car.speed = 0;
+        car.speed = 1;
         car.dist = 0;
         laps = 1;
         engine.bought = 0;
@@ -103,6 +105,7 @@ function oilUpgrade() {
     if (glitchTrophies >= 1) {
         glitchTrophies -= 1;
         car.mult *= 1.5;
+        document.getElementById("enginePower").textContent = "Current power is " + engine.power() * car.mult + ".";
         document.getElementById("oilUpgrade").classList.add("inactive");    
     }
 }
